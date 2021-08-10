@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="shortcut icon" type="ico" href="./static/jd.ico" />
+		<link
+			href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="./static/index.css" />
+		<title>东东邀约</title>
+	</head>
+
+	<body>
+		<div class="mainbox">
+			<div class="contentbox">
+				<div class="qrcode_box col-lg-3 col-md-4 col-sm-6 col-xs-11">
+					<div class="qr_nav">
+						<ul>
+							<li>
+								<a
+									class="title active"
+									href="javascript:void(0);"
+									onclick="changeIndex(0,this)"
+									>扫码登录</a
+								>
+							</li>
+							<li class="sperater"></li>
+							<li>
+								<a
+									class="title"
+									href="javascript:void(0);"
+									onclick="changeIndex(1,this)"
+									>扫码订阅</a
+								>
+							</li>
+						</ul>
+					</div>
+					<div class="qr_box" id="qr">
+						<div class="notify" id="notify">
+							<h1>登录成功</h1>
+							<h2>tips:</h2>
+							<p>
+								京东👉我的👉更多👉(东东农场、东东萌宠、东东工厂、宠汪汪、金榜创造营、领现金、健康社区、种豆得豆)。<br />
+							</p>
+							<p>
+								下载【京喜App】👉我的👉(京喜农场、京喜工厂、京喜财富岛)。<br />
+							</p>
+							<p>
+								下载【京东金融】👉我的👉(种摇钱树、天天提鹅、养猪猪)。<br />
+							</p>
+							<p>每天可领取100+京豆和若干现金红包、优惠券等。<br /></p>
+							<p>京东极速版APP-每天固定1.5汇率左右金币，可兑换红包。</p>
+							<h3>一定要微信扫码订阅通知，不然东西好了你也不知道！过期不候</h3>
+						</div>
+						<div class="container" id="ck_qr">
+							<h4 id="tips">
+								请使用<big style="color: #e4393c">京东</big>扫码
+							</h4>
+							<img id="qrcode" height="170em" class="qr" src="" />
+							<!-- 测试 -->
+							<!--<div class="qr" style="height: 170px; width: 170px"></div> -->
+							<button class="btn" id="jumpapp">一键登录</button>
+						</div>
+					</div>
+					<div class="qr_box" id="qr1">
+						<div class="container">
+							<h4 id="tips">
+								请使用<big style="color: #e4393c">微信</big>扫码
+							</h4>
+							<img
+								id="qrcode1"
+								class="qr"
+								height="170em"
+								src="./static/qr.png"
+								height=""
+								src=""
+							/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="waveWrapper waveAnimation">
+			<div class="waveWrapperInner">
+				<div
+					class="wave waveTop"
+					style="background-image: url('./static/1.png')"
+				></div>
+			</div>
+			<div class="waveWrapperInner">
+				<div
+					class="wave waveMiddle"
+					style="background-image: url('./static/2.png')"
+				></div>
+			</div>
+			<div class="waveWrapperInner">
+				<div
+					class="wave waveBottom"
+					style="background-image: url('./static/3.png')"
+				></div>
+			</div>
+		</div>
+		<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+		<script src="./static/index.js"></script>
+		<script>
+			var timer;
+			var qrcode = document.getElementById("qrcode");
+			var loginUrl = "";
+			var success = "./static/ok.svg";
+			var jumpapp = document.getElementById("jumpapp");
+			if (
+				navigator.userAgent.match(
+					/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i
+				)
+			) {
+				console.log("移动端");
+				jumpapp.style.display = "block";
+			} else {
+				console.log("PC端");
+				jumpapp.style.display = "none";
+			}
+			jumpapp.addEventListener("click", function () {
+				if (loginUrl) {
+					window.location.href = `openapp.jdmobile://virtual/ad?params=${encodeURI(
+						JSON.stringify({
+							category: "jump",
+							des: "ThirdPartyLogin",
+							action: "to",
+							onekeylogin: "return",
+							url: loginUrl,
+							authlogin_returnurl: "weixin://",
+							browserlogin_fromurl: window.location.host,
+						})
+					)}`;
+				} else {
+					alert("还没加载好，请稍后重试");
+				}
+			});
+		</script>
+	</body>
+</html>
