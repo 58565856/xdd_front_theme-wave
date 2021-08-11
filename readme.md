@@ -6,3 +6,5 @@ index.html,static直接扔服务器，跟JDC同目录
 样式看图
 
 by 未来可期。
+
+代理测试
